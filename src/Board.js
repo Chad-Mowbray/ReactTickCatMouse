@@ -6,7 +6,7 @@ import Square from './Square'
    
       state = {
         squares: Array(9).fill(null),
-        xIsNext: true,
+        catIsNext: true,
       };
     
 
@@ -24,6 +24,9 @@ import Square from './Square'
     ];
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
+      console.log(a,b,c)
+      console.log(squares)
+      console.log(this.state.catIsNext)
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
         return squares[a];
       }
@@ -36,19 +39,30 @@ import Square from './Square'
         if (this.calculateWinner(squares) || squares[i]) {
           return;
         }
-        const cat = <span aria-label="a cat" role="img">🐈</span>
-        const mouse = <span aria-label="a mouse" role="img">🐁</span>
-        squares[i] = this.state.xIsNext ? cat : mouse;
+        //  const cat = <span aria-label="a cat" role="img">🐈</span>
+        //  const mouse = <span aria-label="a mouse" role="img">🐁</span>
+        squares[i] = this.state.catIsNext ? "cat" : "mouse";
         this.setState({
           squares: squares,
-          xIsNext: !this.state.xIsNext,
+          catIsNext: !this.state.catIsNext,
         });
       }
   
     renderSquare(i) {
+      
+      
+      let value = ''
+      if(this.state.squares[i] === 'cat') {
+        value = <span aria-label="a cat" role="img">🐈</span>
+      } else if(this.state.squares[i] === 'mouse') {
+        value = <span aria-label="a mouse" role="img">🐁</span>
+      } else {
+        value = null
+      }
+
       return (
         <Square
-          value={this.state.squares[i]}
+          value={value}
           onClick={() => this.handleClick(i)}
         />
       );
@@ -61,7 +75,7 @@ import Square from './Square'
         if (winner) {
           status = 'Winner: ' + winner;
         } else {
-          status = 'Next player: ' + (this.state.xIsNext ? 'Cat' : 'Mouse');
+          status = 'Next player: ' + (this.state.catIsNext ? "cat" : "mouse");
         }
     
   
