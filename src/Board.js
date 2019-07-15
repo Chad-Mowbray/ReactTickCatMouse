@@ -1,5 +1,6 @@
 import React from 'react'
 import Square from './Square'
+import Player from './Player'
 
  
   class Board extends React.Component {
@@ -7,6 +8,7 @@ import Square from './Square'
       state = {
         squares: Array(9).fill(null),
         catIsNext: true,
+        
       };
     
 
@@ -39,8 +41,6 @@ import Square from './Square'
         if (this.calculateWinner(squares) || squares[i]) {
           return;
         }
-        //  const cat = <span aria-label="a cat" role="img">🐈</span>
-        //  const mouse = <span aria-label="a mouse" role="img">🐁</span>
         squares[i] = this.state.catIsNext ? "cat" : "mouse";
         this.setState({
           squares: squares,
@@ -81,6 +81,7 @@ import Square from './Square'
   
       return (
         <div>
+          <Player turn={this.state.catIsNext} value={this.state.apple}/>
           <div className="status">{status}</div>
           <div className="board-row">
             {this.renderSquare(0)}
