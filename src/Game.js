@@ -1,6 +1,5 @@
 import React from 'react'
 import Board from './Board'
-import Player from './Player'
 
 
 
@@ -12,7 +11,7 @@ class Game extends React.Component {
       return (
         <div>
            {/* <Player catIsNext={true}/> */}
-        <h1>A Game of Cat and Mouse</h1>
+        <h1>Tic Cat Mouse</h1>
       
         <div className="game">
             

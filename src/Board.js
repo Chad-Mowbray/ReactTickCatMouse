@@ -1,6 +1,7 @@
 import React from 'react'
 import Square from './Square'
 import Player from './Player'
+import Winner from './Winner'
 
  
   class Board extends React.Component {
@@ -82,7 +83,9 @@ import Player from './Player'
       return (
         <div>
           <Player turn={this.state.catIsNext} value={this.state.apple}/>
-          <div className="status">{status}</div>
+          <Winner victor={winner}/>
+          <div className="status">{status}</div>  
+          {/* {status} */}
           <div className="board-row">
             {this.renderSquare(0)}
             {this.renderSquare(1)}
